@@ -1,6 +1,6 @@
 ---
 title: Academic
-draft: true
+draft: false
 tags:
   - website
   - academic
