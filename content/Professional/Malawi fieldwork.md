@@ -2,9 +2,9 @@
 title: Malawi Fieldwork
 draft: false
 tags:
-  - personal
-  - website
   - malawi
+  - professional
+  - development
 ---
 ---
 This summer (2025), I spent three months in Malawi as a research intern. My work focused on measuring the impact of food security, water access, and education interventions by SAFI, a local non-profit. My goal was to better understand the impact of these programs on family and community levels using semi-structured ethnographic interviews and documentary photography. 

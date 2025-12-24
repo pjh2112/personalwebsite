@@ -1,3 +1,237 @@
 @use "./base.scss";
 
-// put your custom CSS here!
+/* =========================
+   Quartz – Courier Prime Only
+   ========================= */
+
+/* ---------- Font ---------- */
+@font-face {
+  font-family: "Courier Prime";
+  src: url("/static/fonts/CourierPrime-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- Theme vars ---------- */
+:root {
+  --paper: #f7f4ec;
+  --ink: #15120f;
+  --muted: rgba(0, 0, 0, 0.62);
+  --rule: rgba(0, 0, 0, 0.18);
+  --rule-strong: rgba(0, 0, 0, 0.38);
+  --radius: 10px;
+  --gutter: clamp(10px, 1.5vw, 18px);
+  --measure: 72ch;
+}
+
+/* ---------- Global font override ----------
+   This is the critical section.
+*/
+html,
+body,
+*,
+*::before,
+*::after {
+  font-family: "Courier Prime",
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    "Liberation Mono",
+    monospace !important;
+}
+
+/* ---------- Base ---------- */
+html,
+body {
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ---------- Layout width ---------- */
+.page,
+.layout,
+.container,
+main {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---------- Header / nav ---------- */
+header,
+.site-header,
+.topbar,
+.navbar {
+  background: var(--paper) !important;
+  border-bottom: 1px solid var(--rule-strong);
+}
+
+header a,
+nav a {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+/* ---------- Article ---------- */
+article,
+.content,
+main article {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 2.25rem .75rem 4.5rem;
+}
+
+article > * {
+  margin: 0 0 1rem 0;
+}
+
+/* ---------- Headings (still Courier Prime) ---------- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  margin-top: 2rem;
+}
+
+h1 {
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin-top: 0;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+h2 {
+  font-size: 1.1rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+h3 { font-size: 1rem; }
+h4 { font-size: 0.95rem; }
+
+/* ---------- Paragraphs / lists ---------- */
+p,
+li {
+  font-size: 1rem;
+  max-width: 70ch;
+}
+
+/* ---------- Metadata ---------- */
+time,
+.meta,
+.readtime,
+.frontmatter {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* ---------- Links ---------- */
+a {
+  color: rgba(0, 0, 0, 0.88);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+/* ---------- Explorer / sidebar ----------
+   Forces Quartz file tree to obey Courier Prime
+*/
+.explorer,
+.sidebar,
+nav[aria-label="Explorer"],
+.explorer *,
+.sidebar *,
+nav[aria-label="Explorer"] * {
+  font-family: "Courier Prime",
+    ui-monospace,
+    monospace !important;
+}
+
+/* ---------- Panels ---------- */
+.toc,
+.backlinks,
+.graph,
+.graph-view {
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.28);
+  padding: 0.9rem;
+}
+
+/* ---------- Tables ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.5rem;
+  font-size: 0.95rem;
+}
+th,
+td {
+  border: 1px solid var(--rule);
+  padding: 0.55rem 0.65rem;
+}
+
+/* ---------- Code ---------- */
+pre {
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 0.95rem 1.05rem;
+  overflow: auto;
+}
+code {
+  background: rgba(0, 0, 0, 0.05);
+  padding: 0.1rem 0.25rem;
+  border-radius: 6px;
+}
+
+/* Tighter page margins */
+article,
+.content,
+main article {
+  padding-left: 0.6rem !important;
+  padding-right: 0.6rem !important;
+}
+
+/* If Quartz wraps content in a container with padding */
+.page,
+.layout,
+.container,
+main {
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  aside,
+  .sidebar,
+  nav[aria-label="Explorer"] {
+    display: none;
+  }
+
+  article {
+    padding: 2rem 1.1rem 4rem;
+  }
+}
