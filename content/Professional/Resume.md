@@ -2,8 +2,6 @@
 title: Resume
 draft: false
 tags:
-  - website
   - professional
 ---
----
-![[Resume (efface).pdf]]
+![[/static/files/Resumedec.2025.pdf]]

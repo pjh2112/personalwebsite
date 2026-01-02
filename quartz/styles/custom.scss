@@ -15,8 +15,8 @@
 
 /* ---------- Theme vars ---------- */
 :root {
-  --paper: #f7f4ec;
-  --ink: #15120f;
+  --paper: #d0cfcf;
+  --ink: #3b2d3b;
   --muted: rgba(0, 0, 0, 0.62);
   --rule: rgba(0, 0, 0, 0.18);
   --rule-strong: rgba(0, 0, 0, 0.38);
@@ -25,14 +25,13 @@
   --measure: 72ch;
 }
 
-/* ---------- Global font override ----------
-   This is the critical section.
-*/
+/* ---------- Global font + base ---------- */
 html,
 body,
 *,
 *::before,
 *::after {
+  box-sizing: border-box;
   font-family: "Courier Prime",
     ui-monospace,
     SFMono-Regular,
@@ -43,7 +42,6 @@ body,
     monospace !important;
 }
 
-/* ---------- Base ---------- */
 html,
 body {
   background: var(--paper);
@@ -53,20 +51,16 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
 /* ---------- Layout width ---------- */
 .page,
 .layout,
 .container,
 main {
-  max-width: 1200px;
+  max-width: 1400px;
   margin-left: auto;
   margin-right: auto;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
 }
 
 /* ---------- Header / nav ---------- */
@@ -76,6 +70,7 @@ header,
 .navbar {
   background: var(--paper) !important;
   border-bottom: 1px solid var(--rule-strong);
+  margin-bottom: 0.5rem;
 }
 
 header a,
@@ -92,14 +87,14 @@ article,
 main article {
   max-width: var(--measure);
   margin: 0 auto;
-  padding: 2.25rem .75rem 4.5rem;
+  padding: 1.2rem 0.6rem 4rem;
 }
 
 article > * {
   margin: 0 0 1rem 0;
 }
 
-/* ---------- Headings (still Courier Prime) ---------- */
+/* ---------- Headings ---------- */
 h1,
 h2,
 h3,
@@ -114,7 +109,7 @@ h6 {
 
 h1 {
   font-size: clamp(2rem, 4.5vw, 3rem);
-  margin-top: 0;
+  margin-top: 0.25rem;
   padding-bottom: 0.35rem;
   border-bottom: 1px solid var(--rule);
 }
@@ -125,8 +120,13 @@ h2 {
   border-bottom: 1px solid var(--rule);
 }
 
-h3 { font-size: 1rem; }
-h4 { font-size: 0.95rem; }
+h3 {
+  font-size: 1rem;
+}
+
+h4 {
+  font-size: 0.95rem;
+}
 
 /* ---------- Paragraphs / lists ---------- */
 p,
@@ -144,19 +144,24 @@ time,
   font-size: 0.95rem;
 }
 
-/* ---------- Links ---------- */
+/* ---------- Links (global) ---------- */
 a {
   color: rgba(0, 0, 0, 0.88);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+
 a:hover {
+  color: #797979;
   text-decoration-thickness: 2px;
 }
 
-/* ---------- Explorer / sidebar ----------
-   Forces Quartz file tree to obey Courier Prime
-*/
+a:active,
+a:focus {
+  color: #898989;
+}
+
+/* ---------- Explorer / sidebar ---------- */
 .explorer,
 .sidebar,
 nav[aria-label="Explorer"],
@@ -168,7 +173,37 @@ nav[aria-label="Explorer"] * {
     monospace !important;
 }
 
-/* ---------- Panels ---------- */
+/* Sidebar link colors */
+nav[aria-label="Explorer"] a,
+.explorer a,
+.sidebar a {
+  color: #000000 !important;
+}
+
+/* Active (current) page in sidebar */
+nav[aria-label="Explorer"] a[aria-current="page"],
+nav[aria-label="Explorer"] a[aria-current="true"],
+.explorer a[aria-current="page"],
+.explorer a[aria-current="true"],
+.sidebar a[aria-current="page"],
+.sidebar a[aria-current="true"],
+nav[aria-label="Explorer"] .active > a,
+.explorer .active > a,
+.sidebar .active > a {
+  color: #573e41 !important;
+  background: none !important;
+  filter: none !important;
+}
+
+/* Sidebar hover color */
+nav[aria-label="Explorer"] a:hover,
+.explorer a:hover,
+.sidebar a:hover {
+  color: #797979 !important;
+  text-decoration-thickness: 2px;
+}
+
+/* ---------- Panels (TOC / graph / backlinks) ---------- */
 .toc,
 .backlinks,
 .graph,
@@ -186,6 +221,7 @@ table {
   margin: 1rem 0 1.5rem;
   font-size: 0.95rem;
 }
+
 th,
 td {
   border: 1px solid var(--rule);
@@ -200,27 +236,41 @@ pre {
   padding: 0.95rem 1.05rem;
   overflow: auto;
 }
+
 code {
   background: rgba(0, 0, 0, 0.05);
   padding: 0.1rem 0.25rem;
   border-radius: 6px;
 }
 
-/* Tighter page margins */
-article,
-.content,
-main article {
-  padding-left: 0.6rem !important;
-  padding-right: 0.6rem !important;
+/* ---------- Images / figures ---------- */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1rem auto;
 }
 
-/* If Quartz wraps content in a container with padding */
-.page,
-.layout,
-.container,
-main {
-  padding-left: 0.5rem !important;
-  padding-right: 0.5rem !important;
+figure {
+  text-align: center;
+}
+
+figcaption {
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 0.95rem;
+  margin-top: 0.25rem;
+  text-align: center;
+  font-style: italic;
+}
+
+/* ---------- PDF embeds ---------- */
+iframe[src$=".pdf"],
+embed[src$=".pdf"],
+object[type="application/pdf"] {
+  width: 100%;
+  height: 700px;
+  display: block;
+  margin-bottom: 0;
 }
 
 /* ---------- Responsive ---------- */
@@ -231,7 +281,15 @@ main {
     display: none;
   }
 
-  article {
-    padding: 2rem 1.1rem 4rem;
+  article,
+  .content,
+  main article {
+    padding: 2rem 0.75rem 3.5rem;
+  }
+
+  iframe[src$=".pdf"],
+  embed[src$=".pdf"],
+  object[type="application/pdf"] {
+    height: 70vh;
   }
 }

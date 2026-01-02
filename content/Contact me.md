@@ -5,5 +5,7 @@ tags:
   - professional
 ---
 email: parkerjhorn@gmail.com
-linkedin: https://www.linkedin.com/in/parker-horn-716750372/
+
+linkedin: https://shorturl.at/9PWC6
+
 instagram: @parkerjhorn (https://www.instagram.com/parkerjhorn/)
